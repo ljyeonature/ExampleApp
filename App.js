@@ -1,6 +1,7 @@
-import { StatusBar } from 'expo-status-bar';
+// import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Alert, TextInput } from 'react-native';
+import StartButton from './components/StartButton.js';
 
 export default class App extends React.Component {
   state = {
@@ -17,17 +18,9 @@ render() {
             this.setState({ content: text });
           }} 
         />
-        <TouchableOpacity 
-          activeOpacity={0.8} 
-          onPress={() => {
-            Alert.alert(this.state.content);
-          }}
-        >
-          <View style={styles.box}>
-            <Text style={styles.first}>시작하기</Text>
-            <StatusBar style="auto" />
-          </View>
-        </TouchableOpacity>
+        <StartButton 
+        showAlert={() => Alert.alert(this.state.content)} 
+        disabled={this.state.content.length > 0 ? 0 : 1}/>
       </View>
     );
   }
